@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  skip_before_action :verify_authenticity_token, if: -> { request.format.json? }
+
+  respond_to :json
+  private
+  def respond_with(resource, _opts = {})
+    render json: resource
+  end
+  def respond_to_on_destroy
+    render json: { message: "Logged out." }
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-
+import "./homepage.scss"
 export default function Homepage() {
   return (
     <div className="container">

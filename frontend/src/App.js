@@ -5,7 +5,7 @@ import PrivateText from './components/PrivateText'
 const App=()=>{
   const [currUser, setCurrUser]=useState(null);
   return (
-    <div className="App">
+    <div className="App container">
       <User currUser={currUser} setCurrUser={setCurrUser} />
     </div>
   );

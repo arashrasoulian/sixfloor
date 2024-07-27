@@ -1,27 +1,38 @@
+// src/components/User.js
 import Signup from "./Signup";
-import Login from './Login'
-import Logout from './Logout'
-import { useState } from "react";
+import Login from "./Login";
+import Logout from "./Logout";
 import PrivateText from "./PrivateText";
 import Homepage from "../pages/homepage/Homepage";
-const User = ({currUser, setCurrUser}) => {
-    const [show, setShow]=useState(true)
-    if(currUser)
-        return (
-            <div>
-            Hello {currUser.email}
-            <Homepage currUser={currUser}/>
-            <Logout setCurrUser={setCurrUser}/>
-            </div>
-        )
+import { Navbar } from "./navbar/Navbar";
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrUser, clearCurrUser } from '../store/userSlice';
+import { useState } from 'react';
+
+const User = () => {
+  const currUser = useSelector((state) => state.user.currUser);
+  const dispatch = useDispatch();
+  const [show, setShow] = useState(true);
+
+  if (currUser)
     return (
-        <div>
-            { show?
-                <Login setCurrUser={setCurrUser} setShow={setShow}/>
-                :
-                <Signup setCurrUser={setCurrUser}  setShow={setShow} />
-            }
-        </div>
-    )
-}
-export default User
+      <div>
+        <Navbar />
+        <Homepage currUser={currUser} />
+      </div>
+    );
+
+  return (
+    <div>
+      {show ? (
+        <Login setCurrUser={(user) => dispatch(setCurrUser(user))} setShow={setShow} />
+      ) : (
+        <Signup setCurrUser={(user) => dispatch(setCurrUser(user))} setShow={setShow} />
+      )}
+    </div>
+  );
+};
+
+export default User;
+
+

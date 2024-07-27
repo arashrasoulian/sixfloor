@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
-  def home
+  before_action :authenticate_user!, only: [:profile]
+
+  def profile
+    render json: current_user
   end
 end

@@ -3,13 +3,14 @@ import Login from './Login'
 import Logout from './Logout'
 import { useState } from "react";
 import PrivateText from "./PrivateText";
+import Homepage from "../pages/homepage/Homepage";
 const User = ({currUser, setCurrUser}) => {
     const [show, setShow]=useState(true)
     if(currUser)
         return (
             <div>
             Hello {currUser.email}
-            <PrivateText currUser={currUser}/>
+            <Homepage currUser={currUser}/>
             <Logout setCurrUser={setCurrUser}/>
             </div>
         )

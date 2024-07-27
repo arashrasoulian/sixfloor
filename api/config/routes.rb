@@ -1,5 +1,7 @@
+
 Rails.application.routes.draw do
   get 'private/test'
+
   devise_for :users,
     path: '',
     path_names: {
@@ -11,4 +13,8 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
+
+    get 'profile', to: 'pages#profile'
+
 end
+

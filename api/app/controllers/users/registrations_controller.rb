@@ -1,14 +1,37 @@
 # frozen_string_literal: true
 
+# class Users::RegistrationsController < Devise::RegistrationsController
+#   respond_to :json
+#   def create
+#     build_resource(sign_up_params)
+#     resource.save
+#     sign_in(resource_name, resource)
+#     render json: resource
+#   end
+# end
+
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+
   def create
     build_resource(sign_up_params)
     resource.save
-    sign_in(resource_name, resource)
-    render json: resource
+    if resource.persisted?
+      sign_in(resource_name, resource)
+      render json: { message: 'Signed up successfully.', user: resource }, status: :ok
+    else
+      render json: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :phone, :name, :city)
   end
 end
+
+
 # app/users/sessions_controller.rb
 
   # before_action :configure_sign_up_params, only: [:create]

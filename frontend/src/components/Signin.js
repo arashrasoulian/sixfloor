@@ -1,5 +1,7 @@
 import { useRef } from "react"
-const Login = ({setCurrUser, setShow}) =>{
+import { useNavigate } from "react-router-dom"
+const Signin = ({setCurrUser}) =>{
+  const navigate = useNavigate()
   const formRef=useRef()
   const login=async (userInfo, setCurrUser)=>{
     const url="http://localhost:3000/login"
@@ -41,7 +43,8 @@ const Login = ({setCurrUser, setShow}) =>{
   }
   const handleClick=e=>{
     e.preventDefault()
-    setShow(false)
+    navigate("/signup")
+
   }
   return(
     <div>
@@ -50,11 +53,11 @@ const Login = ({setCurrUser, setShow}) =>{
         <br/>
         Password: <input type="password" name='password' placeholder="password" />
         <br/>
-        <input type='submit' value="Login" />
+        <input type='submit' value="Signin" />
       </form>
       <br />
       <div>Not registered yet, <a href="#signup" onClick={handleClick} >Signup</a> </div>
     </div>
   )
 }
-export default Login
+export default Signin

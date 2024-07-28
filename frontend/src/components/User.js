@@ -1,15 +1,16 @@
 // src/components/User.js
-import Signup from "./Signup";
-import Login from "./Login";
+
 import Homepage from "../pages/homepage/Homepage";
 import { Navbar } from "./navbar/Navbar";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Landingpage from "../pages/landingpage/Landingpage";
+import SigninPage from "../pages/signinsignup/Signin";
+import SignupPage from "../pages/signinsignup/Signup";
 
 const User = () => {
   const currUser = useSelector((state) => state.user.currUser);
-
 
   if (currUser)
     return (
@@ -20,9 +21,13 @@ const User = () => {
     );
 
   return (
-    <div>
-      <Landingpage/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landingpage />} />
+        <Route path="/signin" element={<SigninPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+    </Router>
   );
 };
 

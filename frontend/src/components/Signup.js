@@ -66,7 +66,7 @@ const Signup = ({ setCurrUser, setShow }) => {
         <input type='submit' value="Submit" />
       </form>
       <br />
-      <div>Already registered, <a href="#login" onClick={handleClick} >Login</a> here.</div>
+      <div>Already registered, <a href="#login" onClick={handleClick} >Sign in</a> here.</div>
     </div>
   );
 };

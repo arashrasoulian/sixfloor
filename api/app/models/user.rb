@@ -15,5 +15,7 @@ class User < ApplicationRecord
   validates :classkey, presence: true, uniqueness: true
 
   has_many :scores, dependent: :destroy
+  has_many :documents, dependent: :destroy
+
 
 end

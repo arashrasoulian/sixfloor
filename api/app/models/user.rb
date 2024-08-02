@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   has_many :scores, dependent: :destroy
   has_many :documents, dependent: :destroy
+  has_many :classes_created, class_name: 'ClassData', foreign_key: 'user_id', dependent: :destroy
 
+  def enrolled_classes
+    ClassData.where('students @> ?', "{#{self.id}}")
+  end
 
 end

@@ -4,13 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-
   validates :name, presence: true
   validates :phone, presence: true
   validates :city, presence: true
   # validates :teacher, presence: true
 
+  validates :address, presence: true
+  validates :birthday, presence: true
+  validates :educational_level, presence: true
+  validates :classkey, presence: true, uniqueness: true
 
-
+  has_many :scores, dependent: :destroy
 
 end

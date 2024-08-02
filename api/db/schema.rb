@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_142625) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_02_143001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_142625) do
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "pdf"
+    t.text "mark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,8 +41,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_142625) do
     t.string "name"
     t.string "city"
     t.boolean "teacher"
+    t.string "address"
+    t.date "birthday"
+    t.string "educational_level"
+    t.string "classkey"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "scores", "users"
 end

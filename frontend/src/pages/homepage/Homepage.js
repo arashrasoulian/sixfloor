@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import "./homepage.scss";
 import Colorboxes from "./Colorboxes";
+
 export default function Homepage() {
   return (
     <div className="container">

@@ -14,6 +14,13 @@ console.log("salam" ,currUser);
       <h1>Profile Page</h1>
       <p>Name: {currUser.name}</p>
       <p>Email: {currUser.email}</p>
+      <p>phone: {currUser.phone}</p>
+      <p>city: {currUser.city}</p>
+      <p>teacher: {currUser.teacher ? "dashagh" : "shaghal"}</p>
+      <p>adress: {currUser.adress}</p>
+      <p>birthday: {currUser.birthday}</p>
+
+
       {/* Add more user details here */}
     </div>
   );

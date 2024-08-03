@@ -26,6 +26,8 @@ const Signin = ({setCurrUser}) =>{
         localStorage.setItem("token", response.headers.get("Authorization"))
 
         setCurrUser(data)
+        navigate("/")
+
     }catch(error){
        console.log("error", error)
     }

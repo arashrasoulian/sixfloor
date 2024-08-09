@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 export function Navbar() {
   const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.currUser);
+
   console.log("curuser", currUser);
   return (
     <Nav className="navbar-container">
